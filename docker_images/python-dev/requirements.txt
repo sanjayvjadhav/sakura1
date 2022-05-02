@@ -11,3 +11,6 @@ pymongo
 expandvars
 flask
 jupyter
+matplotlib
+numba
+PyGithub

@@ -22,12 +22,13 @@ services:
     ports:
       - "80:80"
       - "8888:8888"
+      - "8082:8082"
     depends_on:
       - rabbit
       - mongo
     volumes:
       -  $HOME/isharpdemo/isharp-core/isharp/datahub/web/templates:/templates
-      -  $HOME/isharpdemo/isharp-core/demo/jupyter
+      -  $HOME/isharpdemo/isharp-core/demo/jupyter:/jupyter
     links:
       - "rabbit:isharp-rabbitmq"
     environment:
@@ -38,6 +39,11 @@ services:
       RABBIT_MANAGEMENT_PORT: "15672"
       isharp_hub_host: rabbit:5672
       isharp_web_templates: /templates
+      mongo_host: mongo
+      isharp_home: /isharp-core
+      graph_host: graph
+      datahub_host: localhost
+
 
   graph:
     container_name: isharp-graph

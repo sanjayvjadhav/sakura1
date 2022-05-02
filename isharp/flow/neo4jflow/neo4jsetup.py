@@ -87,7 +87,7 @@ def inject_feeds_tx(tx, feed_points):
 
 class DbSetup():
     def __init__(self, uri, user, password):
-        self._driver = GraphDatabase.driver(uri, auth=(user, password))
+        self._driver = GraphDatabase.driver(uri, auth=(user, password), encrypted=False)
 
     def close(self):
         self._driver.close()
@@ -126,8 +126,8 @@ with open(cypher_path, 'r') as cypher_file:
 
 
 yaml_path =  os.path.join(path, "neo4jsetup.cypher")
-
-setup = DbSetup("bolt://isharpdemo:7687", user="", password="")
+neo4j_host = os.getenv("graph_host","graph")
+setup = DbSetup("bolt://{}:7687".format(neo4j_host), user="", password="")
 
 setup.clean()
 setup.setUp()

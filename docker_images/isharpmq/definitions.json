@@ -1,0 +1,13 @@
+{
+  "queues": [
+    {
+      "name": "pol.tickers",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ]
+}
+
+
